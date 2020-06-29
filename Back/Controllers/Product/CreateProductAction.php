@@ -69,7 +69,7 @@ class CreateProductAction extends Controller
             $data['picture'] = new Image($pictureData);
             $data['composition'] = new Composition($inputExtern['ingredientsWithPositions']);
             $data['certifications'] = $inputExtern['labels'] ?? null;
-    
+     
             $product = new Product($data);
             $this->repository->insert($product);
 
