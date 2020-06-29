@@ -1,0 +1,125 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Trebuchet MS",Arial,sans-serif;
+    text-align: center;
+}
+
+div#content-div {
+    text-align: center;
+}
+
+#logo-image {
+    width: 180px;
+    height: 173px;
+}
+
+footer {
+    margin-top: 100px;
+}
+
+div#product-identity {
+    margin: auto;
+    width: 70%;
+}
+
+div#product-identity #content {
+    text-align: initial;
+    border: 1px solid grey;
+    padding: 15px;
+}
+
+div#product-composition {
+    margin: 0px auto;
+    width: 85%;
+}
+
+table#product_ingredients th {
+    vertical-align: middle;
+}
+
+table#product_ingredients td.metadata{
+    word-wrap: break-word;
+}
+
+#product-alternatives {
+    margin: 0px auto;
+    width: 85%;
+}
+
+.show-alternatives {
+    margin-bottom: 20px;
+}
+
+.show-alternatives #alternative_image {
+    border: 1px solid grey;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.show-alternatives #alternative_description {
+    text-align: initial;
+    padding-left: 15px;
+}
+.show-alternatives #alternative_brand {
+    color: #785797;
+}
+
+.titles {
+    color: #785797;
+    text-align: initial;
+}
+
+nav.navbar {
+    background-color: #b0a0bf;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100% !important;
+    left: 0;
+    z-index: 20;
+}
+
+nav a, nav a:hover{
+    color: black;
+}
+
+.navbar-nav > li{
+    padding-right: 30px;
+    padding-left: 30px;
+
+}
+
+a:focus, select{ 
+    outline: none; 
+}
+
+input[type="text"], textarea, div.col-3, .labels_checkbox, select.form-control {
+    text-align: initial;
+}
+
+@-moz-document url-prefix() { 
+    select {
+       color: transparent !important;
+       text-shadow: 0 0 0 #000 !important;
+    }
+}
+
+.form_create, .form_get {
+    margin: auto;
+    width: 65%;
+}
+
+.raccourci_buttons, .form_buttons {
+    border-radius: 0;
+    padding: 15px 50px;
+    border: solid white;
+    background-color: #9999ff;
+    color: black;
+}
+
+.raccourci_buttons:hover, .form_buttons:hover {
+    background-color: #003399;
+    color: white;
+    cursor: pointer;
+}

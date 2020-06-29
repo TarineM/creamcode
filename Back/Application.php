@@ -4,21 +4,28 @@ class Application
 {
     public static function process()
     {
+        // sécurité form input get
         if(!empty($_GET['controller'])) {
             // GET => users
             // Users
-            $controllerName = ucfirst($_GET['controller']);
+            $controllerNameInput = ucfirst($_GET['controller']);
         }
 
         if(!empty($_GET['action'])) {
             // GET => users
             // Users
-            $actionName = ucfirst($_GET['action']) . 'Action';
+            $actionNameInput = ucfirst($_GET['action']);
         }
 
-        $controllerName = "\Controllers\\" . $controllerName . '\\' . $actionName;
+        $actionName = sprintf("%sAction", $actionNameInput);
+        $controllerName = sprintf("\Controllers\\%s\\%s", $controllerNameInput, $actionName);
 
-        $controller = new $controllerName();
-        $controller();
+        if (class_exists($controllerName)) {
+            $controller = new $controllerName();
+            $controller();
+        }
+        else {
+            header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found", true, 404);
+        }
     }
 }

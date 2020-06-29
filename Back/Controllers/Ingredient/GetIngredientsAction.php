@@ -29,17 +29,9 @@ class GetIngredientsAction extends Controller
         $ingredientsPresenter = [];
 
         foreach($ingredients as $ingredient) {
-            $origin = (new IngredientOriginRepository())->find($ingredient['origin_id']);
-            $humanImpact = (new IngredientImpactRepository())->find($ingredient['human_impact_id']);
-            $environmentImpact = (new IngredientImpactRepository())->find($ingredient['environment_impact_id']);
+            $ingredientsPresenter[] = $this->repository->getObject($ingredient);
 
-            $ingredient['origin'] = new IngredientOrigin($origin);
-            $ingredient['human_impact'] = new IngredientImpact($humanImpact);
-            $ingredient['environment_impact'] = new IngredientImpact($environmentImpact);
-
-            $ingredientsPresenter[] = new Ingredient($ingredient);
-
-            return $ingredientsPresenter;
         }
+        return $ingredientsPresenter;
     }
 }

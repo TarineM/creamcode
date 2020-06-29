@@ -1,8 +1,17 @@
 <?php
+
+require_once('../../Back/autoload.php');
+
+if (isset($_GET['controller']) && isset($_GET['action']))
+{
+    \Application::process();
+}
+else {
     $pageTitle = "Accueil";
-    require_once('header.html.php');
+    $pageContent = '<h1>Bienvenue dans le site Creamcode !</h1>';
+    require_once('layout.html.php'); 
+    }   
 ?>
 
-<h1>À propos du Creamcode</h1>
 
-<?php require_once('footer.html.php'); ?>
+

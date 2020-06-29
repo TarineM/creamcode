@@ -26,7 +26,7 @@ class GetIngredientOriginsAction extends Controller
         $originsPresenter = [];
 
         foreach($origins as $origin) {
-            $originsPresenter[] = new IngredientOrigin($origin);
+            $originsPresenter[] = $this->repository->getObject($origin);
         }
 
         return $originsPresenter;

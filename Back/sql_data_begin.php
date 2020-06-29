@@ -2,22 +2,20 @@
 
 $brand = [
     ['Avril', 'avril', 'avril'],
-    ['Sanoflore', 'sanoflore', 'sanoflore'],
     ['Nivea', 'nivea', 'nivea'],
     ['Head and Shoulders', 'head_and_shoulders', 'head_and_shoulders'],
     ['Mademoiselle Bio', 'mademoiselle_bio', 'mademoiselle_bio'],
     ['Garnier', 'garnier', 'garnier'],
-    ['Marilou bio', 'marilou_bio', 'marilou_bio'],
-    ['Weleda', 'weleda', 'weleda'],
 ];
 
 $labels = [
     ['AB', 'ab'],
     ['BDIH', 'bdih'],
+    ['Choose Cruelty Free', 'choose_cruelty_free'],
     ['Cosmebio', 'cosmebio'],
-    ['Cruelty Free', 'cruelty_free'],
     ['Cruelty Free and Vegan', 'cruelty_free_and_vegan'],
     ['Ecocert', 'ecocert'],
+    ['Leaping Bunny', 'leaping_bunny'],
     ['Made in France', 'made_in_france'],
     ['Natrue', 'natrue'],
     ['Nature et Progrès', 'nature_et_progres'],
@@ -52,50 +50,50 @@ $types = [
 ];
 
 $impacts = [
-    ['Bon', '00e64d'],
-    ['Neutre', 'c2c2a3'],
-    ['Allergène', 'ffff66'],
-    ['À éviter', 'ffad33'],
-    ['Danger', 'ff1a1a'],
-    ['Inconnu', 'ffffff'],
+    ['bon', '00e64d'],
+    ['neutre', 'c2c2a3'],
+    ['allergène', 'ae80c0'],
+    ['à éviter', 'ffad33'],
+    ['danger', 'ff1a1a'],
+    ['unconnu', 'ffffff'],
 ];
 
 $origins = [
-    'végétal',
-    'animal',
-    'minéral',
+    'végétale',
+    'animale',
+    'minérale',
     'marine',
     'synthétique',
-    'inconnu',
+    'inconnue',
     'diverse',
 ];
 
-/*foreach($brand as $b) {
-    $colle = "'" . implode("', '", $b) . "'";
+foreach($brand as $b) {
+    $colle = sprintf("'%s'", implode("', '", $b));
     echo "<p>INSERT INTO cosmetic_brand (name, folder_name, picture_name) 
     VALUES ({$colle});</p>";
 }
 
 foreach($labels as $lab) {
-    $colle = "'" . implode("', '", $lab) . "'";
+    $colle = sprintf("'%s'", implode("', '", $lab));
     echo "<p>INSERT INTO cosmetic_label (name, picture_name) 
     VALUES ({$colle});</p>";
 }
 
 foreach($types as $typ) {
-    $colle = "'" . $typ . "'";
+    $colle = sprintf("'%s'", $typ);
     echo "<p>INSERT INTO cosmetic_type (name) 
     VALUES ({$colle});</p>";
 }
 
 foreach($impacts as $imp) {
-    $colle = "'" . implode("', '", $imp) . "'";
+    $colle = sprintf("'%s'", implode("', '", $imp));
     echo "<p>INSERT INTO ingredient_impact (impact_level, color) 
     VALUES ({$colle});</p>";
-}*/
+}
 
 foreach($origins as $org) {
-    $colle = "'" . $org . "'";
+    $colle = sprintf("'%s'", $org);
     echo "<p>INSERT INTO ingredient_origin (name) 
     VALUES ({$colle});</p>";
 }

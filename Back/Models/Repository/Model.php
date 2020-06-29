@@ -26,7 +26,8 @@ abstract class Model
      */
     public function find(int $id)
     {    
-        $query = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE id = :id");
+        $sql = sprintf("SELECT * FROM %s WHERE id = :id", $this->table);
+        $query = $this->pdo->prepare($sql);
 
         $query->bindValue(':id', $id, PDO::PARAM_INT);
         $query->execute();
@@ -41,7 +42,8 @@ abstract class Model
      */
     public function findAll()
     {
-        $resultats = $this->pdo->query("SELECT * FROM {$this->table}");
+        $sql = sprintf("SELECT * FROM %s", $this->table);
+        $resultats = $this->pdo->query($sql);
 
         $items = $resultats->fetchAll();
 
@@ -55,7 +57,8 @@ abstract class Model
      */
     public function delete(int $id): void
     {
-        $query = $this->pdo->prepare("DELETE FROM {$this->table} WHERE id = :id");
+        $sql = sprintf("DELETE FROM %s WHERE id = :id", $this->table);
+        $query = $this->pdo->prepare($sql);
         
         $query->bindValue(':id', $id, PDO::PARAM_INT);
         $query->execute();
@@ -69,7 +72,7 @@ abstract class Model
         }
 
         $newData['columns'] = implode(", ", array_keys($cleanData));
-        $newData['fields'] = "'" . implode("', '", $cleanData) . "'";
+        $newData['fields'] = sprintf("\"%s\"", implode("\", \"", $cleanData));
 
         return $newData;
     }
@@ -79,11 +82,16 @@ abstract class Model
         $paramData = $this->removeNullFromData($data);
 
         if (null !== $paramData) {
-            $sql = "INSERT INTO {$this->table} (". $paramData['columns'] . ") VALUES (" . $paramData['fields'] . ")";
+            $sql = sprintf("INSERT INTO %s (%s) VALUES (%s)", $this->table, $paramData['columns'], $paramData['fields']);
 
             $query = $this->pdo->prepare($sql);
 
             $query->execute();
         }
+    }
+
+    public function getPdo(): PDO
+    {
+        return $this->pdo;
     }
 }

@@ -5,7 +5,8 @@ class Http
     // redirect('index.php')
     public static function redirect(string $url): void
     {
-        header("Location: $url");
+        $location = sprintf("Location: %s", $url);
+        header($location);
         exit();
     }
 }

@@ -1,5 +1,27 @@
-<?php
-    require_once('header.html.php');
-    echo $pageContent;
-    require_once('footer.html.php');
-?>
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8"/>
+        <title><?= $pageTitle ?></title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <link href="../Assets/CSS/template_client.css" rel="stylesheet" type="text/css">
+        <?php $logoPath = '../Assets/IMG/logo-cream-code.png'; ?>
+        <link rel="icon" href=<?= $logoPath ?> >
+    </head>
+    <body>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script src="../Assets/JS/template.js"></script>
+        <script src="../Assets/JS/search/ingredients.js"></script>
+        <script src="../Assets/JS/search/products.js"></script>
+        <?php require_once('header.html.php'); ?>
+        <div id="content-div">
+            <?= $pageContent ?>
+        </div>
+    </body>
+    <?php require_once('footer.html.php'); ?>
+</html>

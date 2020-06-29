@@ -4,6 +4,8 @@ namespace Models\Repository\Brand;
 
 use Models\Repository\Model;
 use Models\Entity\Brand\Brand;
+use FileSystem\Folder;
+use FileSystem\Image;
 
 class BrandRepository extends Model
 {
@@ -16,5 +18,15 @@ class BrandRepository extends Model
         $data['picture_name'] = $brand->getPicture()->getName();
 
         $this->insertInDatabase($data);
+    }
+
+    public function getObject(array $dataFetch): Brand
+    {
+        $dataFolder['name'] = $dataFetch['folder_name'];
+        $dataPicture['name'] = $dataFetch['picture_name'];
+        $dataFetch['folder'] = new Folder($dataFolder);
+        $dataFetch['picture'] = new Image($dataPicture);
+        
+        return new Brand($dataFetch);
     }
 }

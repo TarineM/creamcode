@@ -20,7 +20,7 @@ abstract class AbstractFileSystem
     public function __construct(array $data)
     {
         $this->setId($data['id'] ?? null);
-        $this->setName($data['name']);
+        $this->setName($data['name'] ?? null);
     }
 
     public function getId(): ?int
@@ -33,12 +33,12 @@ abstract class AbstractFileSystem
         $this->id = $id;
     }
 
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function setName(string $name): void
+    public function setName(?string $name): void
     {
         $this->name = $name;
     }

@@ -13,16 +13,17 @@ class CreateTypeAction extends Controller
     public function __invoke()
     {
         if(isset($_GET['task']) && $_GET['task'] === 'form') {
-            $pageTitle = 'Ajouter une origine d\'ingrédient';
+            $pageTitle = 'Ajouter un type de produit';
             
-            //redirect vers formulaire création brand
+            \Renderer::render('Product/create_type', compact('pageTitle'));
         }
 
         else {
-            $input['name'] = $_POST['name'] ?? null;
+            $input['name'] = $_POST['name'] !== "" ? $_POST['name'] : null;
 
             $securityExpr = new \Security\ValidationExpr();
-            $validation['name'] = $securityExpr->isStringValid($input['name']);
+            
+            $validation['name'] = $securityExpr->isStringValid($input['name'], $securityExpr::REGEX_LEVEL_FIVE);
     
             if (in_array(null, $input) || in_array(false, $validation)) {
                 die("Votre formulaire a été mal rempli !");
@@ -32,11 +33,9 @@ class CreateTypeAction extends Controller
     
             $type = new Type($data);
     
-            $pageTitle = 'Toutes les types';
-    
             $this->repository->insert($type);
     
-            //redirect vers formulaire création origine d'ingrédient
+            \Http::redirect('index.php?controller=product&action=getTypes');
         }
     }
 }

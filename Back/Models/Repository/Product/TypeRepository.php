@@ -20,4 +20,9 @@ class TypeRepository extends Model
         
         $this->insertInDatabase($data);
     }
+
+    public function getObject(array $dataFetch): Type
+    {   
+        return new Type($dataFetch);
+    }
 }

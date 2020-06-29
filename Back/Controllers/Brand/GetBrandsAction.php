@@ -27,13 +27,7 @@ class GetBrandsAction extends Controller
         $brandsPresenter = [];
 
         foreach($brands as $brandData) {
-            $folderData['name'] = $brandData['folder_name'];
-            $pictureData['name'] = $brandData['picture_name'];
-
-            $brandData['folder'] = new Folder($folderData);
-            $brandData['picture'] = new Image($pictureData);
-
-            $brandsPresenter[] = new Brand($brandData);
+            $brandsPresenter[] = $this->repository->getObject($brandData);
         }
 
         return $brandsPresenter;

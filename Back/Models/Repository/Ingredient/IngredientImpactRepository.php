@@ -16,4 +16,9 @@ class IngredientImpactRepository extends Model
         
         $this->insertInDatabase($data);
     }
+
+    public function getObject(array $dataFetch): IngredientImpact
+    {   
+        return new IngredientImpact($dataFetch);
+    }
 }

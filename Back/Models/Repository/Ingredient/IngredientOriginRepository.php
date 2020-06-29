@@ -15,4 +15,9 @@ class IngredientOriginRepository extends Model
 
         $this->insertInDatabase($data);
     }
+
+    public function getObject(array $dataFetch): IngredientOrigin
+    {   
+        return new IngredientOrigin($dataFetch);
+    }
 }

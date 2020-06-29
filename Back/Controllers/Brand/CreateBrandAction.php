@@ -20,14 +20,15 @@ class CreateBrandAction extends Controller
         }
 
         else {
-            $input['name'] = $_POST['name'] ?? null;
-            $input['folder_name'] = $_POST['folder_name'] ?? null;
-            $input['picture_name'] = $input['folder_name'];
+            $input['name'] = $_POST['name'] !== "" ? $_POST['name'] : null;
+            $input['folder_name'] = $_POST['folder_name'] !== "" ? $_POST['folder_name'] : null;
+            $input['picture_name'] = "logo-brand";
 
             $securityExpr = new \Security\ValidationExpr();
-            $validation['name'] = $securityExpr->isStringValid($input['name']);
-            $validation['folder_name'] = $securityExpr->isStringValid($input['folder_name']);
-            $validation['picture_name'] = $securityExpr->isStringValid($input['picture_name']);
+            
+            $validation['name'] = $securityExpr->isStringValid($input['name'], $securityExpr::REGEX_LEVEL_FIVE);
+            $validation['folder_name'] = $securityExpr->isStringValid($input['folder_name'], $securityExpr::REGEX_LEVEL_FIVE);
+            $validation['picture_name'] = $securityExpr->isStringValid($input['picture_name'], $securityExpr::REGEX_LEVEL_FIVE);
 
             if (in_array(null, $input) || in_array(false, $validation)) {
                 die("Votre formulaire a été mal rempli !");
@@ -42,9 +43,16 @@ class CreateBrandAction extends Controller
 
             $brand = new Brand($data);
 
-            $pageTitle = 'Toutes les marques';
-
             $this->repository->insert($brand);
+
+            $target_dir = "../Assets/IMG/brands/";  // reference to index.php (admin or client)
+            $old = umask(0); 
+            mkdir($target_dir . $input['folder_name'], 0777); 
+            umask($old); 
+
+            $target_file = $target_dir . $input['folder_name'] . "/logo-brand.png";
+
+            move_uploaded_file($_FILES["brand_picture"]["tmp_name"], $target_file);
 
             \Http::redirect("index.php?controller=brand&action=getBrands");
         }

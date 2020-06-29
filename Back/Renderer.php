@@ -7,10 +7,9 @@ class Renderer
         extract($variables);
         
         ob_start();
-        require($path . '.html.php');
+        $path = sprintf("%s.html.php", $path);
+        require($path);
         $pageContent = ob_get_clean();
-
-        $logoPath = '../../Back/Pictures/logo-cream-code.png';
 
         require('layout.html.php');
         exit();

@@ -3,5 +3,6 @@
 spl_autoload_register(function($className)
 {
     $className = str_replace("\\", DIRECTORY_SEPARATOR, $className);
-    require_once("../../Back/$className.php");
+    $fileAutoload = sprintf("../../Back/%s.php", $className);
+    require_once($fileAutoload);
 });

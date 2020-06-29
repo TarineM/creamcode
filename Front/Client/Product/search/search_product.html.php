@@ -1,0 +1,1 @@
+<?php require_once('../Shared/Product/search/search.html.php'); ?>

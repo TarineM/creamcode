@@ -1,22 +1,27 @@
-<?php require_once('const.php') ?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8"/>
-        <title><?= $pageTitle ?></title>
-        <link rel="icon" href=<?= $logoPath ?> >
-        <link href="design.css" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-        <header>
-            <h1>
-                <a href="index.html.php">
-                    <img id="logo-image" alt="Cream Code" src=<?= $logoPath ?> >
-                </a>
-            </h1>
-            <ul id="menu">
-                <li><a href="../Shared/Product/search.html.php">Rechercher un produit</a></li>
-                <li><a href="../Shared/blog_cosmetic.html.php">Documentation cosmétique</a></li>
-                <li><a href="../Shared/about_us.html.php">À propos</a></li>
-            </ul>
-        </header>
+<header>
+    <div class="row">
+        <div class="col-2">
+            <a href="index.php">
+                <img id="logo-image" alt="Cream Code" src=<?= $logoPath ?> >
+            </a>
+        </div>
+
+        <div class="col">
+            <nav class="navbar navbar-expand-lg">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php?controller=product&action=getProduct&task=form">Rechercher un produit</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Documentation cosmétique</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">À propos</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div> 
+    </div>
+</header>

@@ -14,7 +14,7 @@ class GetIngredientImpactsAction extends Controller
     {   
         $impactsPresenter = $this->getAllData();
 
-        $pageTitle = 'Tous les d\'impact d\'ingrédient';
+        $pageTitle = 'Tous les d\'impacts d\'ingrédient';
         
         \Renderer::render('Ingredient/get_ingredient_impacts', compact('pageTitle', 'impactsPresenter'));
     }
@@ -26,7 +26,7 @@ class GetIngredientImpactsAction extends Controller
         $impactsPresenter = [];
 
         foreach($impacts as $impact) {
-            $impactsPresenter[] = new IngredientImpact($impact);
+            $impactsPresenter[] = $this->repository->getObject($impact);
         }
 
         return $impactsPresenter;

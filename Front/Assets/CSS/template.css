@@ -1,13 +1,21 @@
-* {
+body {
     margin: 0px;
     padding: 0px;
     font-family: "Trebuchet MS",Arial,sans-serif;
     text-align: center;
 }
 
+div#content-div {
+    text-align: center;
+}
+
 #logo-image {
     width: 180px;
     height: 173px;
+}
+
+footer {
+    margin-top: 100px;
 }
 
 /*
@@ -82,10 +90,75 @@ nav > ul li:hover .sub-list{
     font-size: 12px;
 }*/
 
-.form_create {
+.form_create, .form_get {
     margin: auto;
-    width: 50%;
+    width: 65%;
 }
+
+div#product-identity {
+    margin: auto;
+    width: 70%;
+}
+
+div#product-identity #content {
+    text-align: initial;
+    border: 1px solid grey;
+    padding: 15px;
+}
+
+div#product-composition {
+    margin: 0px auto;
+    width: 85%;
+}
+
+table#product_ingredients th {
+    vertical-align: middle;
+}
+
+table#product_ingredients td.metadata{
+    word-wrap: break-word;
+}
+
+#product-alternatives {
+    margin: 0px auto;
+    width: 85%;
+}
+
+.show-alternatives {
+    margin-bottom: 20px;
+}
+
+.show-alternatives #alternative_image {
+    border: 1px solid grey;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.show-alternatives #alternative_description {
+    text-align: initial;
+    padding-left: 15px;
+}
+.show-alternatives #alternative_brand {
+    color: #785797;
+}
+
+.titles {
+    color: #785797;
+    text-align: initial;
+}
+
+/*
+table#product_ingredients {
+    margin: 0px auto;
+    border: 1px solid grey;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table#product_ingredients th, table#product_ingredients td {
+    border: 1px solid grey;
+    padding: 30px;
+}*/
 
 .raccourci_buttons, .form_buttons {
     border-radius: 0;
@@ -95,7 +168,7 @@ nav > ul li:hover .sub-list{
     color: black;
 }
 
-.raccourci_buttons:hover, .form_buttons:hover {
+.raccourci_buttons:hover, .form_buttons:hover, .remove_alternative:hover {
     background-color: #003399;
     color: white;
     cursor: pointer;
@@ -116,8 +189,8 @@ nav a, nav a:hover{
 }
 
 .navbar-nav > li{
-    padding-left:15%;
-    padding-right:15%;
+    padding-left:10%;
+    padding-right:10%;
 }
 
 .navbar-nav > li > .dropdown-menu {
@@ -134,8 +207,8 @@ a:focus, select{
     outline: none; 
 }
 
-input[type="text"], textarea {
-    text-align:left;
+input[type="text"], textarea, div.col-3, .labels_checkbox, select.form-control {
+    text-align: initial;
 }
 
 @-moz-document url-prefix() { 
@@ -151,8 +224,24 @@ input[type="text"], textarea {
     border-collapse: collapse;
 }
 
-.all-tab th, td {
+.all-tab th, .all-tab td {
     border: 1px solid grey;
     padding: 30px;
 }
 
+.all-tab-impacts td{
+    padding: 10px 50px;
+}
+
+table.product_labels td {
+    padding: 10px 15px;
+}
+
+#list_id_ingredients {
+    display: none;
+}
+  
+#add-fields:hover {
+    background-color: rgb(133, 125, 125);
+    color: white;
+}

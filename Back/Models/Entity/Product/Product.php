@@ -2,7 +2,7 @@
 
 namespace Models\Entity\Product;
 
-use Models\Entity\Brand;
+use Models\Entity\Brand\Brand;
 use FileSystem\Image;
 
 class Product

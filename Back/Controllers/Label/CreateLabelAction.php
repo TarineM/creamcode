@@ -23,12 +23,13 @@ class CreateLabelAction extends Controller
             $input = [];
             $validation = [];
             
-            $input['name'] = $_POST['name'] ?? null;
-            $input['picture_name'] = $_POST['picture_name'] ?? null;
+            $input['name'] = $_POST['name'] !== "" ? $_POST['name'] : null;
+            $input['picture_name'] = $_POST['picture_name'] !== "" ? $_POST['picture_name'] : null;
     
             $securityExpr = new \Security\ValidationExpr();
-            $validation['name'] = $securityExpr->isStringValid($input['name']);
-            $validation['picture_name'] = $securityExpr->isStringValid($input['picture_name']);
+            
+            $validation['name'] = $securityExpr->isStringValid($input['name'], $securityExpr::REGEX_LEVEL_FIVE);
+            $validation['picture_name'] = $securityExpr->isStringValid($input['picture_name'], $securityExpr::REGEX_LEVEL_FIVE);
     
             if (in_array(null, $input) || in_array(false, $validation)) {
                 die("Votre formulaire a été mal rempli !");
@@ -41,9 +42,13 @@ class CreateLabelAction extends Controller
     
             $label = new Label($data);
     
-            $pageTitle = 'Tous les labels';
-    
             $this->repository->insert($label);
+
+            $target_dir = "../Assets/IMG/labels/";  // reference to index.php (admin or client)
+
+            $target_file = $target_dir . $input['picture_name'] . ".png";
+
+            move_uploaded_file($_FILES["label_picture"]["tmp_name"], $target_file);
     
             \Http::redirect('index.php?controller=label&action=getLabels');
         }

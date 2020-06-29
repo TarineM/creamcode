@@ -19,10 +19,11 @@ class CreateIngredientOriginAction extends Controller
         }
 
         else {
-            $input['name'] = $_POST['name'] ?? null;
+            $input['name'] = $_POST['name'] !== "" ? $_POST['name'] : null;
 
             $securityExpr = new \Security\ValidationExpr();
-            $validation['name'] = $securityExpr->isStringValid($input['name']);
+            
+            $validation['name'] = $securityExpr->isStringValid($input['name'], $securityExpr::REGEX_LEVEL_FIVE);
 
             if (in_array(null, $input) || in_array(false, $validation)) {
                 die("Votre formulaire a été mal rempli !");
@@ -31,8 +32,6 @@ class CreateIngredientOriginAction extends Controller
             $data['name'] = $input['name'];
 
             $ingredientOrigin = new IngredientOrigin($data);
-
-            $pageTitle = 'Toutes les origines d\'ingrédients';
 
             $this->repository->insert($ingredientOrigin);
 

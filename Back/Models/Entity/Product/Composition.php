@@ -2,24 +2,21 @@
 
 namespace Models\Entity\Product;
 
-use Models\Entity\Ingredient;
+use Models\Entity\Ingredient\Ingredient;
 
 class Composition
 {
     /**
      * @var array
-     * positions are keys number
-     * 0 => ingredient1
-     * 1 => ingredient2
      */
     private $ingredientsWithPositions;
 
     public function __construct(array $data)
     {
-        $this->setIngredientsWithpositions($data['ingredientsWithPositions']);
+        $this->setIngredientsWithpositions($data);
     }
 
-    public function getIngredientsWithPositions(): ?array
+    public function getIngredientsWithPositions(): array
     {
         return $this->ingredientsWithPositions;
     }
@@ -35,23 +32,22 @@ class Composition
      * @param array $composition
      * @return array
      */
-    public static function sortComposition(array $ingredientList): ?array
+    public static function sortComposition(array $ingredientList)
     {
         $newList = [];
-        $error = 0;
 
         for ($i=0; $i < count($ingredientList); $i++)
         {
-            if ($ingredientList[$i] instanceof Ingredient) {
-                $newList[$i] = $ingredientList[$i];
+            if (false === ($ingredientList[$i] instanceof Ingredient)) {
+                return false;
             }
-            else
-            {
-                $error+= 1;
-            }
+
+            $newList[] = [
+                'position' => $i+1,
+                'ingredient' => $ingredientList[$i],
+            ];
         }
 
-        return  ($error > 0 ? $newList : null);
+        return $newList;
     }
-
 }

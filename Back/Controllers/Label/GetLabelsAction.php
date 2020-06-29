@@ -27,11 +27,7 @@ class GetLabelsAction extends Controller
         $labelsPresenter = [];
 
         foreach($labels as $labelData) {
-            $pictureData['name'] = $labelData['picture_name'];
-
-            $labelData['picture'] = new Image($pictureData);
-
-            $labelsPresenter[] = new Label($labelData);
+            $labelsPresenter[] = $this->repository->getObject($labelData);
         }
 
         return $labelsPresenter;
